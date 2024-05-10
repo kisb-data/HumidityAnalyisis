@@ -78,15 +78,17 @@ with colB:
 
     # Create line chart using Altair
     line_chart = alt.Chart(df_melted).mark_line().encode(
-        x='datetime:T',
-        y='Temperature:Q',
+        x=alt.X('datetime:T', axis=alt.Axis(grid=False)),
+        y=alt.Y('Temperature:Q', axis=alt.Axis(grid=True)),
         color=alt.Color('Location:N', scale=alt.Scale(range=ChartPropDF.loc[0,'ChartValueColors']),  sort=None)
     ).properties(
-        title='Temperature to dew point:',
-        
+        title='Temperature to dew point:',     
     ).configure_view(
         stroke='transparent',
         fill=ChartPropDF.loc[0,'BGColor']
+    ).configure_axis(
+        gridColor=ChartPropDF.loc[0,'GridColor'], 
+        gridOpacity=0.5  
     ).interactive()
 
     # Display the chart using Streamlit

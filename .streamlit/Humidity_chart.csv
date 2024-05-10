@@ -1,4 +1,4 @@
 ChartName;ChartType;ChartValueColors;PaletteType;BGColor;GridColor
-AbsoluteHumidityMain;Altair Line;['#7c9eaf', '#6a7559', '#afa44b', '#6f5c4a', '#7c878c', '#bb5b47'];Different;#BCC3C4;#414141
-AbsoluteHumidityMain;Altair Line;['#7c9eaf', '#6a7559', '#afa44b', '#6f5c4a', '#7c878c'];Different;#BCC3C4;#414141
-Example;Altair Bar;['#626c73'];Different;#BCC3C4;#414141
+AbsoluteHumidityMain;Altair Line;['#7c9eaf', '#6a7559', '#afa44b', '#6f5c4a', '#7c878c', '#bb5b47'];Different;#ececec;#6b869a
+AbsoluteHumidityMain;Altair Line;['#7c9eaf', '#6a7559', '#afa44b', '#6f5c4a', '#7c878c'];Different;#ececec;#6b869a
+Example;Altair Bar;['#788ba2'];Different;#ececec;#6b869a

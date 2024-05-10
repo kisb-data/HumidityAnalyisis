@@ -50,21 +50,21 @@ with colB:
     # Altair line chart absolute humidity
     line_chart_abs = alt.Chart(abs_melted).mark_line().encode(
         x=alt.X('datetime:T', axis=alt.Axis(grid=False, labels=True)),
-        y='Absolute Humidity:Q',
+        y=alt.Y('Absolute Humidity:Q', axis=alt.Axis(grid=True)),
         color=alt.Color('Location:N', scale=alt.Scale(range=ChartPropDF.loc[0,'ChartValueColors']),  sort=None)
     )
 
     # Altair line chart relative humidity
     line_chart_rel = alt.Chart(rel_melted).mark_line().encode(
         x=alt.X('datetime:T', axis=alt.Axis(grid=False, labels=True)),
-        y='Relative Humidity:Q',
+        y=alt.Y('Relative Humidity:Q', axis=alt.Axis(grid=True)),
         color=alt.Color('Location:N', scale=alt.Scale(range=ChartPropDF.loc[0,'ChartValueColors']),  sort=None)
     )
 
     # Altair line chart temperature
     line_chart_temp = alt.Chart(temp_melted).mark_line().encode(
         x=alt.X('datetime:T', axis=alt.Axis(grid=False, labels=True)),
-        y='Temperature:Q',
+        y=alt.Y('Temperature:Q', axis=alt.Axis(grid=True)),
         color=alt.Color('Location:N', scale=alt.Scale(range=ChartPropDF.loc[0,'ChartValueColors']),  sort=None)
     )
 
@@ -82,6 +82,9 @@ with colB:
         layered_main = alt.layer(line_chart_abs+month_end_lines_main).configure_view(
             stroke='transparent',
             fill=ChartPropDF.loc[0,'BGColor']
+        ).configure_axis(
+            gridColor=ChartPropDF.loc[0,'GridColor'], 
+            gridOpacity=0.5  
         ).interactive()
 
         # show chart
@@ -133,13 +136,16 @@ with colB:
    
     # Creating Altair bar chart
     chart = alt.Chart(monthly_counts).mark_bar(color=ChartPropDF.loc[2,'ChartValueColors'][0], size=40).encode(
-        x=alt.X('datetime:T', title='Month'),
-        y=alt.Y('Count:Q', title='Number of Events'),
+        x=alt.X('datetime:T', title='Month', axis=alt.Axis(grid=False)),
+        y=alt.Y('Count:Q', title='Number of Events', axis=alt.Axis(grid=True)),
     ).configure_view(
         stroke='transparent',
         fill=ChartPropDF.loc[2,'BGColor']
+    ).configure_axis(
+        gridColor=ChartPropDF.loc[2,'GridColor'], 
+        gridOpacity=0.5  
     ).interactive()
-
+    
     monthly_counts['datetime'] = monthly_counts['datetime'] - pd.DateOffset(months=1)
 
     st.text("")

@@ -78,7 +78,7 @@ with colB:
     # Altair line chart absolute humidity
     line_chart_by_month = alt.Chart(abs_hum_by_month_melted).mark_line().encode(
         x=alt.X('datetime:T', axis=alt.Axis(grid=False, labels=True)),
-        y='Absolute Humidity:Q',
+        y=alt.Y('Absolute Humidity:Q', axis=alt.Axis(grid=True)),
         color=alt.Color('Location:N', scale=alt.Scale(range=ChartPropDF.loc[0,'ChartValueColors']),  sort=None)
     ).properties(
         title='Absolute Humidity:'
@@ -88,7 +88,7 @@ with colB:
     # Altair line chart absolute humidity difference
     line_chart_by_month_diff = alt.Chart(abs_hum_diff_by_month_melted).mark_line().encode(
         x=alt.X('datetime:T', axis=alt.Axis(grid=False, labels=True)),
-        y='Absolute Humidity Difference:Q',
+        y=alt.Y('Absolute Humidity Difference:Q', axis=alt.Axis(grid=True)),
         color=alt.Color('Location:N', scale=alt.Scale(range=ChartPropDF.loc[0,'ChartValueColors']),  sort=None)
     ).properties(
         title='Absolute Humidity Difference:'
@@ -97,38 +97,49 @@ with colB:
     # ---------------------------------
     # Altair boxplot chart, absolute humidity by location
     boxplot_abs_hum = alt.Chart(abs_hum_by_month_melted).mark_boxplot().encode(
-    x=alt.X('Location:N', sort=list(abs_hum.columns)),
-    y='Absolute Humidity:Q',
+    x=alt.X('Location:N', sort=list(abs_hum.columns), axis=alt.Axis(grid=False)),
+    y=alt.Y('Absolute Humidity:Q', axis=alt.Axis(grid=True)),
     color=alt.Color('Location:N', scale=alt.Scale(range=ChartPropDF.loc[0,'ChartValueColors']),  sort=list(abs_hum.columns))
     ).configure_view(
         stroke='transparent',
         fill=ChartPropDF.loc[1,'BGColor']
+    ).configure_axis(
+            gridColor=ChartPropDF.loc[0,'GridColor'], 
+            gridOpacity=0.5  
     )
 
     # ---------------------------------
     # Altair boxplot chart, absolute humidity difference by location
     boxplot_abs_hum_diff = alt.Chart(abs_hum_diff_by_month_melted).mark_boxplot().encode(
-    x=alt.X('Location:N', sort=list(abs_hum.columns)),
-    y='Absolute Humidity Difference:Q',
+    x=alt.X('Location:N', sort=list(abs_hum.columns), axis=alt.Axis(grid=False)),
+    y=alt.Y('Absolute Humidity Difference:Q', axis=alt.Axis(grid=True)),
     color=alt.Color('Location:N', scale=alt.Scale(range=ChartPropDF.loc[0,'ChartValueColors']),  sort=list(abs_hum.columns))
     ).configure_view(
         stroke='transparent',
         fill=ChartPropDF.loc[1,'BGColor']
+    ).configure_axis(
+            gridColor=ChartPropDF.loc[0,'GridColor'], 
+            gridOpacity=0.5  
     )
 
     # ---------------------------------
     # create layer chart, if whole dataset is used add month end
-   
     if selected_period !='None':    
         # create layer chart
         layered_abs_hum = alt.layer(line_chart_by_month).configure_view(
             stroke='transparent',
             fill=ChartPropDF.loc[0,'BGColor']
+        ).configure_axis(
+            gridColor=ChartPropDF.loc[0,'GridColor'], 
+            gridOpacity=0.5  
         ).interactive()
         # create layer chart
         layered_abs_hum_diff = alt.layer(line_chart_by_month_diff).configure_view(
             stroke='transparent',
             fill=ChartPropDF.loc[0,'BGColor']
+        ).configure_axis(
+            gridColor=ChartPropDF.loc[0,'GridColor'], 
+            gridOpacity=0.5  
         ).interactive()
     
     else:
@@ -142,11 +153,17 @@ with colB:
         layered_abs_hum = alt.layer(line_chart_by_month+month_end_lines_main).configure_view(
             stroke='transparent',
             fill=ChartPropDF.loc[0,'BGColor']
+        ).configure_axis(
+            gridColor=ChartPropDF.loc[0,'GridColor'], 
+            gridOpacity=0.5  
         ).interactive()
         # create layer chart
         layered_abs_hum_diff = alt.layer(line_chart_by_month_diff+month_end_lines_main).configure_view(
             stroke='transparent',
             fill=ChartPropDF.loc[0,'BGColor']
+        ).configure_axis(
+            gridColor=ChartPropDF.loc[0,'GridColor'], 
+            gridOpacity=0.5  
         ).interactive()
 
     # create columns
