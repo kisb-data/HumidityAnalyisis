@@ -51,7 +51,7 @@ with colB:
     st.markdown('# 📆MonthlyStatement')
     st.markdown('---')
     st.markdown('### Monthly Charts:')
-    st.markdown('At this point, we can better understand our data, in monthly resolution. On higher steps the data is distorted, because of the different amount of monthly data. We can analyze on two charts, the absolute humidity on the left, and the difference of this value compared to the value measured outside on the right.')
+    st.markdown('At this point, we can better understand our data, in monthly resolution. On higher steps the data is distorted, because of the different amount of monthly data. We can analyze on two charts, the absolute humidity on the left, and the difference of this value compared to themeasurement outside on the right.')
 
     # create selectbox
     select_options = set([f"{date.year}.{str(date.month).zfill(2)}" for date in abs_hum.index])
@@ -186,5 +186,7 @@ with colB:
     # description
     st.markdown('---')
     st.markdown('# Observations')
-    st.markdown('''''')
+    st.markdown('''
+It can be seen that there are fluctuations in the humidity outside in the summer months. As long as the temperature is high during the day, there is more moisture in the air, but when it cools down at night, it decreases. The structure also has its own fluctuation, it adjusts to the external parameters, but does not absorb the fluctuations. 
+Then we can observe something interesting from autumn. As long as the humidity outside is minimal, the structure does not adapt to it. This is due to the non-100 percent vapor barrier. The evaluation of this will be discussed later. Another interesting observation is that the humidity is relatively lower at the southern measuring point in winter. The pipes from the outside arrive there, which I suspect were not properly sealed and thus the cold dry air can flow in, this is also supported by the temperature data.''')
     

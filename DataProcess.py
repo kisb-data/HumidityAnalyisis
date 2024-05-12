@@ -24,7 +24,7 @@ def relative_humidity_to_absolute(temp_celsius, relative_humidity):
 
 # ------------------------------------------------------------------------------
 # create absulute humidity data, if is cashed, changes will not be don after refresh site
-@st.cache_resource
+#@st.cache_resource
 def GetData():
 
     # import humidity data

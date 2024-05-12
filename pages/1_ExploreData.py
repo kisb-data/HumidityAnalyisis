@@ -44,7 +44,7 @@ with colB:
     st.markdown('# ✏️ExploreData')
     st.markdown('---')
     st.markdown('### All data:')
-    st.markdown('''Here we can see our 3 main parameters, temperature, absolute and relative humidity. I measured the data on the four sides of the house at 30 cm from the base and one place under the slab and for comparison in one place outside. The data was collected manually at random times.''')
+    st.markdown('''Here we can see our 3 main parameters, temperature, absolute and relative humidity. I measured the data on the four sides of the house at 30 cm from the base and one place under the slab and for comparison one place outside. The data was collected manually at random times.''')
 
     # ---------------------------------
     # Altair line chart absolute humidity
@@ -155,4 +155,4 @@ with colB:
     # description
     st.markdown('---')
     st.markdown('# Observations')
-    st.markdown(''' As you can see, relative humidity is not really suitable for comparing data, so we will use absolute humidity in the future. The dexcription contains a lot of interesting things, but let's not draw any conclusions yet. As you can see, the frequency of the data is not the same every month, which distorts the evaluation.''')
+    st.markdown(''' As you can see, relative humidity is not really suitable for comparing data, so we will use absolute humidity in the future. The description contains a lot of interesting things, but don't jump to conclusions yet. As you can see, the frequency of the data is not the same every month, which distorts the evaluation. However, what can already be clearly seen is that there is a difference between the winter and summer data, but we will evaluate this later.''')

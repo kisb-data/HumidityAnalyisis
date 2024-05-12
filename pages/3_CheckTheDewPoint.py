@@ -98,4 +98,4 @@ with colB:
     # description
     st.markdown('---')
     st.markdown('# Observations')
-    st.markdown('''''')
+    st.markdown('''As you can see, even if the vapor barrier is not 100 percent, a high degree of thermal bridge is required for the vapor to condense. What is interesting, however, is that moisture could condense in the structure better in summer than in winter due to the high humidity.''')
