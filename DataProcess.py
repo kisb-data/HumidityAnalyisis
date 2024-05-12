@@ -27,7 +27,7 @@ def relative_humidity_to_absolute(temp_celsius, relative_humidity):
 def GetData():
 
     # import humidity data
-    df = pd.read_excel(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'Humidity data', 'Humidity.xls'))
+    df = pd.read_csv(os.path.dirname(os.path.abspath(__file__))+'\\Humidity data\\Humidity.csv')
 
     # take only relevant columns(need delete another)
     df = df.iloc[:, :14].copy()
@@ -63,7 +63,7 @@ def GetData():
 # import chart data, if is cashed, changes will not be don after refresh site
 #@st.cache_resource 
 def GetChartData():
-    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".streamlit", "Humidity_chart.csv")
+    path = os.path.dirname(os.path.abspath(__file__))+"\\.streamlit\\Humidity_chart.csv"
     ChartPropDF = pd.DataFrame()
     if os.path.exists(path):
         ChartPropDF = pd.read_csv(path, delimiter=';')
