@@ -27,18 +27,18 @@ def relative_humidity_to_absolute(temp_celsius, relative_humidity):
 def GetData():
 
     # import humidity data
-    df = pd.read_csv(os.path.dirname(os.path.abspath(__file__))+'/Humidity data/Humidity.csv')
+    df = pd.read_excel(os.path.dirname(os.path.abspath(__file__))+'\\Humidity data\\Humidity.xls')
 
     # take only relevant columns(need delete another)
     df = df.iloc[:, :14].copy()
 
     # remove nans and zeros
     df.dropna(inplace=True)
-
+    
     # convert date and time to 1 datetime column and set it as index
-    df['datetime'] = pd.to_datetime(df['Dátum'].astype(str) + ' ' + df['Idő'].astype(str))
+    df['datetime'] = pd.to_datetime(df['Date'].astype(str) + ' ' + df['Time'].astype(str))
     df.set_index('datetime', inplace=True)
-    df.drop(['Dátum', 'Idő'], axis=1, inplace=True)
+    df.drop(['Date', 'Time'], axis=1, inplace=True)
 
     # create absolute humidity dataframe
     abs_hum = pd.DataFrame()
@@ -63,7 +63,7 @@ def GetData():
 # import chart data, if is cashed, changes will not be don after refresh site
 #@st.cache_resource 
 def GetChartData():
-    path = os.path.dirname(os.path.abspath(__file__))+"/.streamlit/Humidity_chart.csv"
+    path = os.path.dirname(os.path.abspath(__file__))+"\\.streamlit\\Humidity_chart.csv"
     ChartPropDF = pd.DataFrame()
     if os.path.exists(path):
         ChartPropDF = pd.read_csv(path, delimiter=';')
