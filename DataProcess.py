@@ -27,7 +27,13 @@ def relative_humidity_to_absolute(temp_celsius, relative_humidity):
 def GetData():
 
     # import humidity data
-    df = pd.read_excel(os.path.dirname(os.path.abspath(__file__))+'\\Humidity data\\Humidity.xls')
+    path_local = os.path.dirname(os.path.abspath(__file__))+'\\Humidity data\\Humidity.xls'
+    path_deploy = os.path.dirname(os.path.abspath(__file__))+'/Humidity data/Humidity.xls'
+    
+    if os.path.exists(path_local):
+        df = pd.read_excel(path_local)
+    else:
+        df = pd.read_excel(path_deploy)
 
     # take only relevant columns(need delete another)
     df = df.iloc[:, :14].copy()
@@ -63,10 +69,14 @@ def GetData():
 # import chart data, if is cashed, changes will not be don after refresh site
 #@st.cache_resource 
 def GetChartData():
-    path = os.path.dirname(os.path.abspath(__file__))+"\\.streamlit\\Humidity_chart.csv"
+    path_local = os.path.dirname(os.path.abspath(__file__))+"\\.streamlit\\Humidity_chart.csv"
+    path_deploy = os.path.dirname(os.path.abspath(__file__))+"/.streamlit/Humidity_chart.csv"
     ChartPropDF = pd.DataFrame()
-    if os.path.exists(path):
-        ChartPropDF = pd.read_csv(path, delimiter=';')
-        ChartPropDF ['ChartValueColors'] = ChartPropDF ['ChartValueColors'].apply(ast.literal_eval)
-
+    if os.path.exists(path_local):
+        ChartPropDF = pd.read_csv(path_local, delimiter=';')
+    else:
+        ChartPropDF = pd.read_csv(path_deploy, delimiter=';')
+    
+    ChartPropDF ['ChartValueColors'] = ChartPropDF ['ChartValueColors'].apply(ast.literal_eval)   
+    
     return ChartPropDF
